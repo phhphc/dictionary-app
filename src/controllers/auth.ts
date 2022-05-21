@@ -1,72 +1,69 @@
 import { Request, Response } from "express"
 import expressAsyncHandler from "express-async-handler"
 
-import User from '../models/userModels'
 
-// @desc User login
-// @route POST /api/user/login
-// @access Public
+import User from '../models/user'
+import { hashPassword, comparePassword } from "../helpers/password"
+import { generateToken } from '../helpers/token'
+
+// @desc    User login
+// @route   POST /api/user/login
+// @access  Public
 type LoginBody = {
     email?: string
     password?: string
 }
 export const login = expressAsyncHandler(async (req: Request, res: Response) => {
-    const loginBody: LoginBody = req.body
+    const { email, password }: LoginBody = req.body
 
-    if (!loginBody.email) {
+    if (!email || !password) {
         res.status(400)
-        throw Error("email attribute not found")
-    }
-    if (!loginBody.password) {
-        res.status(400)
-        throw Error("Password attribute not found")
+        throw new Error("Make sure email, password field is included")
     }
 
-    const user = User.findOne()
+    // Check if username and password math
+    const user = await User.findOne({ email })
+    if (!user || !await comparePassword(password, user.password)) {
+        res.status(401)
+        throw new Error("User name or password incorrect")
+    }
 
-    res.status(200).send()
+    res.status(200)
+        .cookie('token', generateToken({ id: user._id.toString() }), { httpOnly: true, })
+        .send()
 })
 
 
-// @desc User register
-// @route POST /api/user/register
-// @access Public
+// @desc    User register
+// @route   POST /api/user/register
+// @access  Public
 type RegisterBody = {
     email?: string,
     password?: string,
     name?: string
 }
 export const register = expressAsyncHandler(async (req: Request, res: Response) => {
-    const registerBody: RegisterBody = req.body
+    const { email, password, name }: RegisterBody = req.body
 
-    if (!registerBody.email) {
+    if (!email || !password || !name) {
         res.status(400)
-        throw Error("email not set")
-    }
-    if (!registerBody.password) {
-        res.status(400)
-        throw Error("password not set")
-    }
-    if (!registerBody.name) {
-        res.status(400)
-        throw Error("name not set")
+        throw new Error("Make sure email, password, name field is included")
     }
 
+    // Check user exists
+    if (await User.findOne({ email })) {
+        res.status(409)
+        throw new Error("Email already exists")
+    }
 
+    // Create User
     const user = await User.create({
-        email: registerBody.email,
-        password: registerBody.password,
-        name: registerBody.name
+        email,
+        password: await hashPassword(password),
+        name
     })
 
-
-    res.json(user)
+    res.status(200)
+        .cookie('token', generateToken({ id: user._id.toString() }), { httpOnly: true, })
+        .send()
 })
-
-
-// @desc User logout
-// @route POST /api/user/logout
-// @access Public
-export const logout = (req: Request, res: Response) => {
-    res.status(401).send("logout fail")
-}

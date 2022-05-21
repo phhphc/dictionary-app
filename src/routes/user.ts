@@ -1,10 +1,14 @@
 import { Router } from "express";
 
-import { updateUser, deleteUser } from "../controllers/user";
+import { updateUser, deleteUser, getUser } from "../controllers/user";
+import { protect } from "../middlewares/auth";
 
 const userRouter = Router()
 
-userRouter.put('/:id', updateUser)
-userRouter.delete('/:id', deleteUser)
+userRouter.use(protect)
+
+userRouter.get('/', getUser)
+userRouter.put('/', updateUser)
+userRouter.delete('/', deleteUser)
 
 export default userRouter
