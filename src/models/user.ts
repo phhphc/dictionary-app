@@ -10,15 +10,15 @@ const userSchema = new Schema<IUser>({
     email: {
         type: String,
         unique: true,
-        required: [true, 'No username']
+        required: true
     },
     password: {
         type: String,
-        required: [true, 'No password']
+        required: true
     },
     name: {
         type: String,
-        required: [true, 'No name']
+        required: true
     }
 }, {
     timestamps: true

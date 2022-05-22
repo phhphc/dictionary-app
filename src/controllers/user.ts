@@ -1,9 +1,10 @@
 import { Response } from "express"
-import { JWTRequest } from "../middlewares/auth"
 import expressAsyncHandler from "express-async-handler"
 
 import User from '../models/user'
+import { JWTRequest } from "../middlewares/auth"
 import { hashPassword } from "../helpers/password"
+
 
 // @desc    Get user data
 // @route   GET /api/user/
@@ -34,18 +35,16 @@ type UpdateUserBody = {
 export const updateUser = expressAsyncHandler(async (req: JWTRequest, res: Response) => {
     const { email, password, name }: UpdateUserBody = req.body
 
-    // check if mail is duplicate
-    if (await User.findOne({ email })) {
-        res.status(409)
-        throw new Error("Email duplicate")
-    }
-
     // update user data
     const user = await User.findByIdAndUpdate(req.auth?.id, {
         email,
         password: password ? await hashPassword(password) : password,
         name
     }, { new: true }).select('email name')
+        .catch(() => {
+            res.status(409)
+            throw new Error("Email duplicate")
+        })
 
     if (user) {
         res.json({

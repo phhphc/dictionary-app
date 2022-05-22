@@ -1,15 +1,15 @@
 import dotenv from 'dotenv'
+dotenv.config()
+
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import 'colors'
-dotenv.config()
 
 import { errorHandler } from './middlewares/error'
 import { connectDB } from './configs/database'
-import { authRouter, userRouter } from './routes'
+import { authRouter, userRouter, dictRouter } from './routes'
 
 connectDB()
-
 const app = express()
 const port = process.env.PORT
 
@@ -26,5 +26,6 @@ app.use(cookieParser())
 
 app.use("/api/auth", authRouter)
 app.use("/api/user", userRouter)
+app.use("/api/dict", dictRouter)
 
 app.use(errorHandler)
