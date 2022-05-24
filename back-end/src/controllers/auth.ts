@@ -1,10 +1,18 @@
-import { Request, Response } from "express"
+import { CookieOptions, Request, Response } from "express"
 import expressAsyncHandler from "express-async-handler"
 
 
 import User from '../models/user'
 import { hashPassword, comparePassword } from "../helpers/password"
 import { generateToken } from '../helpers/token'
+
+
+// cookie config
+const cookieOption: CookieOptions = {
+    httpOnly: true,
+    sameSite: true,
+}
+const cookieKey = 'token'
 
 // @desc    User login
 // @route   POST /api/user/login
@@ -28,8 +36,8 @@ export const login = expressAsyncHandler(async (req: Request, res: Response) => 
         throw new Error("User name or password incorrect")
     }
 
-    res.status(200)
-        .cookie('token', generateToken({ id: user._id.toString() }), { httpOnly: true, })
+    res.status(204)
+        .cookie(cookieKey, generateToken({ id: user._id.toString() }), cookieOption)
         .send()
 })
 
@@ -64,6 +72,16 @@ export const register = expressAsyncHandler(async (req: Request, res: Response) 
     })
 
     res.status(200)
-        .cookie('token', generateToken({ id: user._id.toString() }), { httpOnly: true, })
+        .cookie(cookieKey, generateToken({ id: user._id.toString() }), cookieOption)
+        .send()
+})
+
+
+// @desc    User logout
+// @route   POST /api/user/logout
+// @access  Public
+export const logout = expressAsyncHandler(async (req: Request, res: Response) => {
+    res.status(204)
+        .clearCookie(cookieKey, cookieOption)
         .send()
 })

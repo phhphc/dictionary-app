@@ -10,6 +10,7 @@ export interface JWTRequest extends Request {
 export const protect = expressAsyncHandler(async (req: JWTRequest, res: Response, next: NextFunction) => {
     const token = req.cookies.token
     if (!token) {
+        res.status(400)
         throw new Error("No token found in cookies")
     }
 

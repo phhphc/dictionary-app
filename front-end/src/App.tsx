@@ -7,16 +7,16 @@ import Protected from 'components/Protected';
 const App = () => {
   return (
     <Routes>
-      {publicPages.map(({ path, Page }, index) => <Route
-        path={path} key={index} element={<Page />}
+      {publicPages.map(({ path, Page, Layout }, index) => <Route
+        path={path} key={index} element={<Layout><Page /></Layout>}
       />)}
 
-      {privatePages.map(({ path, Page }, index) => <Route
-        path={path} key={index} element={<Protected><Page /></Protected>}
+      {privatePages.map(({ path, Page, Layout }, index) => <Route
+        path={path} key={index} element={<Protected><Layout><Page /></Layout></Protected>}
       />)}
 
-      {defaultPages.map(({ path, Page }, index) => <Route
-        path={path} key={index} element={<Page />}
+      {defaultPages.map(({ path, Page, Layout }, index) => <Route
+        path={path} key={index} element={<Layout><Page /></Layout>}
       />)}
     </Routes>
   );

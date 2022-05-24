@@ -28,4 +28,6 @@ app.use("/api/auth", authRouter)
 app.use("/api/user", userRouter)
 app.use("/api/dict", dictRouter)
 
+app.use(express.static(__dirname + '/../../front-end/build/'))
+
 app.use(errorHandler)

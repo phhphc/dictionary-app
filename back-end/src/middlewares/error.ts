@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express"
 
+const debug = (process.env.NODE_ENV === 'DEBUG')
+
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (res.headersSent) {
         return next(err)
@@ -7,17 +9,8 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
 
     res.status(res.statusCode !== 200 ? res.statusCode : 500)
 
-    if (process.env.NODE_ENV === 'DEBUG') {
-        res.json({
-            message: err.message,
-            stack: err.stack
-        })
-    } else if (res.statusCode != 500) {
-        res.json({
-            message: err.message,
-        })
-    } else {
-        res.send()
-        console.error(err.stack)
-    }
+    res.json({
+        message: res.statusCode !== 500 ? err.message : 'Internal Server Error',
+        stack: debug ? err.stack : null
+    })
 }
