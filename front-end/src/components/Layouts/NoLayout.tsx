@@ -1,10 +1,7 @@
-
-import { LayoutProps } from '.';
+import { LayoutProps } from '.'
 
 const NoLayout = ({ children }: LayoutProps) => {
-    return (<>
-        {children}
-    </>)
+    return <>{children}</>
 }
 
-export default NoLayout;
+export default NoLayout

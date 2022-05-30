@@ -1,6 +1,11 @@
 import { FunctionComponent } from 'react'
 
-import { LayoutProps, AppLayout, AuthLayout, NoLayout } from 'components/Layouts'
+import {
+    LayoutProps,
+    AppLayout,
+    AuthLayout,
+    NoLayout,
+} from 'components/Layouts'
 
 import Dashboard from './Dashboard'
 import Login from './Login'
@@ -10,11 +15,10 @@ import Profile from './Profile'
 import NotFound from './NotFound'
 import Manage from './Manage'
 
-
 export interface IPages {
-    path: string,
-    Page: FunctionComponent,
-    Layout: FunctionComponent<LayoutProps>,
+    path: string
+    Page: FunctionComponent
+    Layout: FunctionComponent<LayoutProps>
 }
 
 export const publicPages: IPages[] = [

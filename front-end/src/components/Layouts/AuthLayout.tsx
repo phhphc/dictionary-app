@@ -1,20 +1,17 @@
+import Header from 'components/Header'
 
-
-import Header from 'components/Header';
-
-import { LayoutProps } from '.';
+import { LayoutProps } from '.'
 
 const AuthLayout = ({ children }: LayoutProps) => {
+    return (
+        <>
+            <Header></Header>
 
-    return (<>
-        <Header></Header>
+            {children}
 
-        {children}
-
-
-        <h2>Auth footer</h2>
-
-    </>)
+            <h2>Auth footer</h2>
+        </>
+    )
 }
 
-export default AuthLayout;
+export default AuthLayout

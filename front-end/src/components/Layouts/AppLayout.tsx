@@ -1,15 +1,15 @@
+import Header from 'components/Header'
 
-import Header from "components/Header";
-
-import { LayoutProps } from '.';
+import { LayoutProps } from '.'
 
 const AppLayout = ({ children }: LayoutProps) => {
-    return (<>
-        <Header></Header>
+    return (
+        <>
+            <Header></Header>
 
-        {children}
-
-    </>)
+            {children}
+        </>
+    )
 }
 
-export default AppLayout;
+export default AppLayout

@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
 
-import AppLayout from "./AppLayout";
-import AuthLayout from "./AuthLayout";
-import NoLayout from "./NoLayout";
+import AppLayout from './AppLayout'
+import AuthLayout from './AuthLayout'
+import NoLayout from './NoLayout'
 
 export interface LayoutProps {
-    children: ReactNode;
+    children: ReactNode
 }
 
-export { AppLayout, AuthLayout, NoLayout };
+export { AppLayout, AuthLayout, NoLayout }

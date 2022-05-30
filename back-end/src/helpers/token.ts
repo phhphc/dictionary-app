@@ -1,8 +1,6 @@
 import { sign, verify } from 'jsonwebtoken'
 
-
 const jwtSecret = process.env.JWT_SECRET as string
-
 
 export interface TokenPayload {
     id: string
@@ -10,8 +8,8 @@ export interface TokenPayload {
 
 export const generateToken = (payload: TokenPayload) => {
     return sign(payload, jwtSecret, {
-        algorithm: "HS256",
-        expiresIn: "30d",
+        algorithm: 'HS256',
+        expiresIn: '30d',
     })
 }
 

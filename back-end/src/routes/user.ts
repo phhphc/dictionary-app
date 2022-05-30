@@ -1,7 +1,7 @@
-import { Router } from "express";
+import { Router } from 'express'
 
-import { updateUser, deleteUser, getUser } from "../controllers/user";
-import { protect } from "../middlewares/auth";
+import { updateUser, deleteUser, getUser } from '../controllers/user'
+import { protect } from '../middlewares/auth'
 
 const userRouter = Router()
 

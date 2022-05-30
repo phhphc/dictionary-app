@@ -1,9 +1,5 @@
-
-
 const Manage = () => {
-    return (
-        <div>Manage</div>
-    )
+    return <div>Manage</div>
 }
 
 export default Manage

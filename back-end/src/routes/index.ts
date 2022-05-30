@@ -1,5 +1,5 @@
-import authRouter from "./auth";
-import userRouter from "./user";
-import dictRouter from "./dict";
+import authRouter from './auth'
+import userRouter from './user'
+import dictRouter from './dict'
 
-export { authRouter, userRouter, dictRouter };
+export { authRouter, userRouter, dictRouter }

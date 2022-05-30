@@ -1,18 +1,18 @@
-import { FormEvent, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useAppDispatch } from "app/hooks"
-import { getUser } from "features/auth/authSlice"
-import { login } from "features/auth/authService"
+import { FormEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from 'app/hooks'
+import { getUser } from 'features/auth/authSlice'
+import { login } from 'features/auth/authService'
 
-import { ILoginData } from "app/interfaces"
+import { ILoginData } from 'app/interfaces'
 
 type LoginForm = ILoginData
 
 const Login = () => {
     // declare state
     const [formData, setFormData] = useState<LoginForm>({
-        email: "",
-        password: "",
+        email: '',
+        password: '',
     })
     const { email, password } = formData
     const [formError, setFormError] = useState<string | undefined>(undefined)
@@ -31,29 +31,39 @@ const Login = () => {
         login(formData)
             .then(() => {
                 dispath(getUser())
-                navigate("/", {replace: true})
+                navigate('/', { replace: true })
             })
             .catch(setFormError)
     }
-    return (<div>
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                {formError && <div>{formError}</div>}
 
-        <form onSubmit={handleSubmit}>
-            {formError && <div>{formError}</div>}
+                <label>
+                    Email:
+                    <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleChange}
+                    />
+                </label>
 
-            <label>Email:
-                <input type="email" name="email" value={email} onChange={handleChange} />
-            </label>
+                <label>
+                    Password:
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handleChange}
+                    />
+                </label>
 
-            <label>Password:
-                <input type="password" name="password" value={password} onChange={handleChange} />
-            </label>
-
-            <input type="submit" value="Login" />
-
-        </form>
-
-
-    </div>)
+                <input type="submit" value="Login" />
+            </form>
+        </div>
+    )
 }
 
 export default Login

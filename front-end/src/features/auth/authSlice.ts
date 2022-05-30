@@ -1,39 +1,31 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-
-import { IUser } from "app/interfaces"
-import * as authService from "./authService"
-
+import { IUser } from 'app/interfaces'
+import * as authService from './authService'
 
 // load user data
-export const getUser = createAsyncThunk(
-    "auth/getUser",
-    async (_, thunkAPI) => {
-        return await authService.loadUser()
-            .catch(thunkAPI.rejectWithValue);
-    }
-)
+export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
+    return await authService.loadUser().catch(thunkAPI.rejectWithValue)
+})
 
 // Logout user thunk
 export const logoutUser = createAsyncThunk(
-    "auth/logoutUser",
+    'auth/logoutUser',
     async (_, thunkAPI) => {
-        return await authService.logout()
-            .catch(thunkAPI.rejectWithValue)
+        return await authService.logout().catch(thunkAPI.rejectWithValue)
     }
 )
 
-
 type AuthState = {
-    user: null | IUser;
-    isLoading: boolean;
-    errorMsg: string | null;
+    user: null | IUser
+    isLoading: boolean
+    errorMsg: string | null
 }
 
 const initialState: AuthState = {
     user: null,
     isLoading: false,
-    errorMsg: null
+    errorMsg: null,
 }
 
 export const authSlice = createSlice({
@@ -69,7 +61,7 @@ export const authSlice = createSlice({
                 state.isLoading = false
                 state.errorMsg = action.payload as string
             })
-    }
+    },
 })
 
 export default authSlice.reducer

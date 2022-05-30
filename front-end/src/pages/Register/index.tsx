@@ -1,22 +1,22 @@
-import { FormEvent, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { FormEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from "app/hooks"
-import { getUser } from "features/auth/authSlice"
-import { register } from "features/auth/authService"
-import { IRegisterData } from "app/interfaces"
+import { useAppDispatch } from 'app/hooks'
+import { getUser } from 'features/auth/authSlice'
+import { register } from 'features/auth/authService'
+import { IRegisterData } from 'app/interfaces'
 
 type RegisterForm = IRegisterData & {
-    password2: string,
+    password2: string
 }
 
 const Register = () => {
     // declare state
     const [formData, setFormData] = useState<RegisterForm>({
-        email: "",
-        password: "",
-        password2: "",
-        name: ""
+        email: '',
+        password: '',
+        password2: '',
+        name: '',
     })
     const { email, password, password2, name } = formData
     const [formError, setFormError] = useState<string | undefined>(undefined)
@@ -35,40 +35,60 @@ const Register = () => {
         register({ email, password, name })
             .then(() => {
                 dispath(getUser())
-                navigate("/", { replace: true })
+                navigate('/', { replace: true })
             })
             .catch(setFormError)
     }
 
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                {formError && <div>{formError}</div>}
 
-    return (<div>
+                <label>
+                    Email:
+                    <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleChange}
+                    />
+                </label>
 
+                <label>
+                    Password:
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handleChange}
+                    />
+                </label>
 
-        <form onSubmit={handleSubmit}>
-            {formError && <div>{formError}</div>}
+                <label>
+                    Confirm Password:
+                    <input
+                        type="password"
+                        name="password2"
+                        value={password2}
+                        onChange={handleChange}
+                    />
+                </label>
 
-            <label>Email:
-                <input type="email" name="email" value={email} onChange={handleChange} />
-            </label>
+                <label>
+                    Your Name:
+                    <input
+                        type="text"
+                        name="name"
+                        value={name}
+                        onChange={handleChange}
+                    />
+                </label>
 
-            <label>Password:
-                <input type="password" name="password" value={password} onChange={handleChange} />
-            </label>
-
-            <label>Confirm Password:
-                <input type="password" name="password2" value={password2} onChange={handleChange} />
-            </label>
-
-            <label>Your Name:
-                <input type="text" name="name" value={name} onChange={handleChange} />
-            </label>
-
-            <input type="submit" value="Register" />
-
-        </form>
-
-
-    </div>)
+                <input type="submit" value="Register" />
+            </form>
+        </div>
+    )
 }
 
 export default Register

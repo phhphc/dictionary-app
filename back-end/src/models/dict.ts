@@ -1,37 +1,40 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose'
 
 interface IDict {
-    word: string,
-    mean: string,
-    detail: any,
-    owner: Schema.Types.ObjectId,
+    word: string
+    mean: string
+    detail: any
+    owner: Schema.Types.ObjectId
     hideUntil?: Schema.Types.Date
 }
 
-const dictSchema = new Schema<IDict>({
-    word: {
-        type: String,
-        required: true
+const dictSchema = new Schema<IDict>(
+    {
+        word: {
+            type: String,
+            required: true,
+        },
+        mean: {
+            type: String,
+            required: true,
+        },
+        detail: {
+            type: String,
+            required: true,
+        },
+        owner: {
+            type: Schema.Types.ObjectId,
+            required: true,
+            ref: 'User',
+        },
+        hideUntil: {
+            type: Schema.Types.Date,
+        },
     },
-    mean: {
-        type: String,
-        required: true,
-    },
-    detail: {
-        type: String,
-        required: true
-    },
-    owner: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
-    },
-    hideUntil: {
-        type: Schema.Types.Date
+    {
+        timestamps: true,
     }
-}, {
-    timestamps: true
-})
+)
 
 dictSchema.index({ owner: 1, word: 1 }, { unique: true })
 
