@@ -18,7 +18,8 @@
 
 .modalHeader {
     font-size: 1.6rem;
-    background-color: gray;
+    background-color: white;
+    padding: 4px 0;
 }
 
 .modalTitle {
@@ -26,14 +27,15 @@
 }
 
 .modalBody {
-    max-height: 90vh;
+    max-height: 85vh;
     overflow: scroll;
+    background-color: whitesmoke;
 }
 
 .modalFooter {
     display: flex;
     flex-direction: row-reverse;
-    background-color: gray;
+    background-color: white;
 }
 
 .modalClose {

@@ -13,13 +13,10 @@ const WordCard = ({ _id, mean, word, detail }: IDict) => {
     }
 
     return (
-        <div className={style.card}>
+        <div className={style.card} onClick={handleShowModal}>
             <div className={style.header}>{word}</div>
             <div className={style.body}>{mean}</div>
             <div className={style.action}>
-                <button className={style.actionBtn}
-                    onClick={handleShowModal}
-                >More</button>
             </div>
         </div >
     );
