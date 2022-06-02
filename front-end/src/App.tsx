@@ -1,10 +1,25 @@
 import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
 
 import './scss/generic.scss'
 import { publicPages, privatePages, defaultPages } from 'pages'
 import Protected from 'components/Protected'
+import { getUser } from 'features/auth/authSlice'
+import { getDict } from 'features/dict/dictSlice'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
 
 const App = () => {
+    const dispatch = useAppDispatch()
+    const user = useAppSelector(state => state.auth.user)
+
+    useEffect(() => {
+        dispatch(getUser())
+    }, [dispatch])
+
+    useEffect(() => {
+        if (user) { dispatch(getDict()) }
+    }, [user, dispatch])
+
     return (
         <Routes>
             {publicPages.map(({ path, Page, Layout }, index) => (

@@ -3,6 +3,16 @@ import expressAsyncHandler from 'express-async-handler'
 
 import Dict from '../models/dict'
 import { JWTRequest } from '../middlewares/auth'
+import * as cambridge from '../services/cambridge'
+
+
+interface IDict {
+    word?: string
+    mean?: string
+    detail?: any
+    hideUntil?: Date
+}
+
 
 // @desc    Get all user dict
 // @route   GET /api/dict/
@@ -20,17 +30,11 @@ export const getUserDict = expressAsyncHandler(
 // @desc    Add dict to user dict list
 // @route   POST /api/dict
 // @access  Authenticate only
-type AddDictBody = {
-    word?: string
-    mean?: string
-    detail?: string
-    hideUntil?: Date
-}
 export const addUserDict = expressAsyncHandler(
     async (req: JWTRequest, res: Response) => {
-        const { word, mean, detail, hideUntil }: AddDictBody = req.body
+        const { word, mean, detail, hideUntil }: IDict = req.body
 
-        if (!word || !mean || !detail) {
+        if (!word || mean == null || !detail) {
             res.status(400)
             throw new Error('Missing required fields')
         }
@@ -41,7 +45,7 @@ export const addUserDict = expressAsyncHandler(
             detail,
             owner: req.auth?.id,
             hideUntil,
-        }).catch(() => {
+        }).catch((e) => {
             res.status(409)
             throw new Error('Word already exists')
         })
@@ -59,15 +63,9 @@ export const addUserDict = expressAsyncHandler(
 // @desc    Update user dict
 // @route   PUT /api/dict/:id
 // @access  Authenticate only
-type UpdateDictBody = {
-    word?: string
-    mean?: string
-    detail?: string
-    hideUntil?: Date
-}
 export const updateUserDict = expressAsyncHandler(
     async (req: JWTRequest, res: Response) => {
-        const { word, mean, detail, hideUntil }: UpdateDictBody = req.body
+        const { word, mean, detail, hideUntil }: IDict = req.body
 
         const dict = await Dict.findOneAndUpdate(
             { _id: req.params.id, owner: req.auth?.id },
@@ -105,5 +103,52 @@ export const deleteUserDict = expressAsyncHandler(
             res.status(404)
             throw new Error('Dict not found')
         }
+    }
+)
+
+
+// @desc    Autocomple search word
+// @route   GET /api/dict/autocomplete?q=
+// @access  Authenticate only
+export const autoCompleteWord = expressAsyncHandler(
+    async (req: JWTRequest, res: Response) => {
+        const q = req.query.q
+
+        if (q === undefined) {
+            res.status(400)
+            throw new Error('Missing required fields')
+        } else if (typeof q !== 'string') {
+            res.status(400)
+            throw new Error('Invalid query')
+        }
+
+        const data = await cambridge.autoCompleteEngWord(q)
+        res.send(data)
+    }
+)
+
+
+// @desc    Lookup word
+// @route   GET /api/dict/lookup?q=
+// @access  Authenticate only
+export const lookUpWord = expressAsyncHandler(
+    async (req: JWTRequest, res: Response) => {
+        const q = req.query.q
+
+        if (q === undefined) {
+            res.status(400)
+            throw new Error('Missing required fields')
+        } else if (typeof q !== 'string') {
+            res.status(400)
+            throw new Error('Invalid query')
+        }
+
+        const data = await cambridge.lookUpWord(q)
+        const resData: IDict = {
+            word: q,
+            mean: '',
+            detail: data,
+        }
+        res.send(resData)
     }
 )

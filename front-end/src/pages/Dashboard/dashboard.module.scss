@@ -1,0 +1,12 @@
+@import "scss/color";
+
+
+.wrapper {
+    margin-top: 32px;
+}
+
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

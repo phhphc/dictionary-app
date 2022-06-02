@@ -1,0 +1,26 @@
+@import "scss/color";
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    background-color: $primary-color;
+    box-shadow: 0 1px 8px rgba(black, 0.6);
+}
+
+.navBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navItem {
+    margin: 10px 20px;
+    color: $primary-color-text;
+    text-decoration: none;
+}
+
+.navBrand {
+    font-size: 1.6rem;
+    padding: 10px 20px;
+    color: $primary-color-text;
+}

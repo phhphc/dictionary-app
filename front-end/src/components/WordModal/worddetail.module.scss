@@ -1,0 +1,56 @@
+.word {
+    font-size: 1.6rem;
+}
+
+.detailBlock {
+    margin-top: 1rem;
+    border-top: 20px solid #ffc400;
+    padding: 0 10px;
+}
+
+.posWrapper {
+    display: flex;
+
+    .pos {
+        & + .pos::before {
+            content: ", ";
+        }
+    }
+}
+
+.ipaWrapper {
+    display: flex;
+
+    .ipaLabel {
+        font-weight: bold;
+
+        & + .ipa {
+            margin-left: 0.5rem;
+        }
+
+        & + .ipaLabel {
+            margin-left: 0.5rem;
+        }
+    }
+
+    .ipa {
+        font-weight: normal;
+    }
+}
+
+.sensesWrapper {
+
+    .senses {
+        border-top: 1px solid #ffc400;
+    }
+}
+
+.def {
+    font-weight: bold;
+}
+
+.expWrapper {
+}
+
+.exp {
+}

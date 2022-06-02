@@ -7,27 +7,27 @@ import 'colors'
 
 import { errorHandler } from './middlewares/error'
 import { connectDB } from './configs/database'
-import { authRouter, userRouter, dictRouter } from './routes'
+import router from './routes'
 
 connectDB()
 const app = express()
 const port = process.env.PORT
 
 app.listen(port, () => {
-    console.log(`[server]: Server is running at http://localhost:${port}`)
+    console.log(`[server] Server is running at http://localhost:${port}`)
     if (process.env.NODE_ENV == 'DEBUG') {
-        console.warn(`[server]: Server is running in debug mode`.red)
+        console.warn(`[server] Server is running in debug mode`.red)
     }
 })
+
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use('/api/auth', authRouter)
-app.use('/api/user', userRouter)
-app.use('/api/dict', dictRouter)
+
+app.use(router)
+
 
 app.use(express.static(__dirname + '/../../front-end/build/'))
-
 app.use(errorHandler)

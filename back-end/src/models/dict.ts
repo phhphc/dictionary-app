@@ -2,8 +2,16 @@ import { Schema, model } from 'mongoose'
 
 interface IDict {
     word: string
-    mean: string
-    detail: any
+    mean?: string
+    detail: {
+        word: string;
+        ipa_uk: string;
+        ipa_us: string;
+        senses: {
+            def: string;
+            examples: string[];
+        }[]
+    }[]
     owner: Schema.Types.ObjectId
     hideUntil?: Schema.Types.Date
 }
@@ -15,11 +23,10 @@ const dictSchema = new Schema<IDict>(
             required: true,
         },
         mean: {
-            type: String,
-            required: true,
+            type: String
         },
         detail: {
-            type: String,
+            type: Schema.Types.Array,
             required: true,
         },
         owner: {

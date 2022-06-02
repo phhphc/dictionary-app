@@ -12,11 +12,10 @@ const Protected = ({ children }: ProtectedProps) => {
     console.log('Protected rerender')
     if (isLoading) {
         return <>Loading...</>
-    } else if (errorMsg) {
-        return <>{errorMsg}</>
     } else if (user) {
         return <>{children}</>
     } else {
+        console.debug(errorMsg)
         return <Navigate to="/login" replace />
     }
 }

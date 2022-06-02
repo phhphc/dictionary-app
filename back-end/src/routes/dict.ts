@@ -5,6 +5,8 @@ import {
     addUserDict,
     updateUserDict,
     deleteUserDict,
+    autoCompleteWord,
+    lookUpWord,
 } from '../controllers/dict'
 import { protect } from '../middlewares/auth'
 
@@ -16,5 +18,7 @@ dictRouter.get('/', getUserDict)
 dictRouter.post('/', addUserDict)
 dictRouter.put('/:id', updateUserDict)
 dictRouter.delete('/:id', deleteUserDict)
+dictRouter.get('/autocomplete', autoCompleteWord)
+dictRouter.get('/lookup', lookUpWord)
 
 export default dictRouter

@@ -1,0 +1,40 @@
+.overlay {
+    position: absolute;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(black, 0.3);
+}
+
+.modal {
+    background-color: white;
+    width: 700px;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modalHeader {
+    font-size: 1.6rem;
+    background-color: gray;
+}
+
+.modalTitle {
+    text-align: center;
+}
+
+.modalBody {
+    max-height: 90vh;
+    overflow: scroll;
+}
+
+.modalFooter {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: gray;
+}
+
+.modalClose {
+}

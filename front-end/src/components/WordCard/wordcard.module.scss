@@ -1,0 +1,30 @@
+@import 'scss/color';
+
+.card {
+    background-color: gray;
+    border-radius: 10px;
+    width: 250px;
+    height: 100px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    color: white;
+    text-align: center;
+}
+
+.body {
+
+}
+
+.action {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.actionBtn {
+    background-color: $primary-color;
+}

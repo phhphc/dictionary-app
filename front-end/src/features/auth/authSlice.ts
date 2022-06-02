@@ -24,7 +24,7 @@ type AuthState = {
 
 const initialState: AuthState = {
     user: null,
-    isLoading: false,
+    isLoading: true,
     errorMsg: null,
 }
 

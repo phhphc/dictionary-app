@@ -1,5 +1,16 @@
-@import 'normalize.css';
+@import "normalize.css";
 
 * {
     box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    border: 0;
+    background-color: whitesmoke;
+}
+
+input {
+    font: inherit;
 }

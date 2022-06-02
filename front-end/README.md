@@ -5,6 +5,6 @@
 ## Live demo
 
 ## Todo
-
-## bug
-- [ ] componet with children props rerender unexprected in npm start
+- [x] add search feature using https://dictionary.cambridge.org/autocomplete/amp?dataset=english&q=hello api
+- [x] Handle search existed dict in DictList
+- [ ] css Header

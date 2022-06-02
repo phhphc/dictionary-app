@@ -1,0 +1,61 @@
+@import "scss/color";
+
+.searchForm {
+    position: relative;
+
+    &.expand {
+        background-color: white;
+        padding: 3px 0;
+        border-radius: 20px 20px 0 0;
+
+        .dropdown {
+            display: block;
+        }
+    }
+}
+
+.search, .submit{
+    outline: none;
+    border: none;
+} 
+
+.search {
+    margin-left: 4px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    box-shadow: inset 0 0 2px #000000;
+}
+
+.submit {
+    margin: 0 4px;
+    border-radius: 20px;
+    padding: 5px;
+    width: 30px;
+    height: 100%;
+    background-color: #fec400;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    .submitImg {
+        padding-top: 4px;
+    }
+}
+
+.dropdown {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+    display: none;
+}
+
+.dropdownItem {
+    padding: 10px;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}

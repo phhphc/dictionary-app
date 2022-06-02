@@ -5,7 +5,7 @@ import { LayoutProps } from '.'
 const AppLayout = ({ children }: LayoutProps) => {
     return (
         <>
-            <Header></Header>
+            <Header/>
 
             {children}
         </>
