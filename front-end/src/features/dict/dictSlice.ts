@@ -3,15 +3,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { IDict, IDictUnsaved } from 'app/interfaces'
 import * as dictService from './dictServices'
 
-
 // get dict list
-export const getDict = createAsyncThunk(
-    'dict/getDict',
-    async (_, thunkAPI) => {
-        return await dictService.loadDict().catch(thunkAPI.rejectWithValue)
-    }
-)
-
+export const getDict = createAsyncThunk('dict/getDict', async (_, thunkAPI) => {
+    return await dictService.loadDict().catch(thunkAPI.rejectWithValue)
+})
 
 // add new dict
 export const addDict = createAsyncThunk(
@@ -21,7 +16,6 @@ export const addDict = createAsyncThunk(
     }
 )
 
-
 // delete dict
 export const deleteDict = createAsyncThunk(
     'dict/deleteDict',
@@ -30,22 +24,23 @@ export const deleteDict = createAsyncThunk(
     }
 )
 
-
 type DictState = {
-    dict: IDict[],
-    isLoading: boolean,
-    errorMsg: string | null,
+    dict: IDict[]
+    isLoading: boolean
+    errorMsg: string | null
     modalState: {
-        isSaved: boolean,
-    } & ({
-        isOpen: false,
-        dict: null
-    } | {
-        isOpen: true,
-        dict: IDictUnsaved | IDict
-    })
+        isSaved: boolean
+    } & (
+        | {
+              isOpen: false
+              dict: null
+          }
+        | {
+              isOpen: true
+              dict: IDictUnsaved | IDict
+          }
+    )
 }
-
 
 const initialState: DictState = {
     dict: [],
@@ -54,16 +49,18 @@ const initialState: DictState = {
     modalState: {
         isSaved: false,
         isOpen: false,
-        dict: null
-    }
+        dict: null,
+    },
 }
-
 
 export const dictSlice = createSlice({
     name: 'dict',
     initialState,
     reducers: {
-        openModal: (state: DictState, action: { payload: IDictUnsaved | IDict }) => {
+        openModal: (
+            state: DictState,
+            action: { payload: IDictUnsaved | IDict }
+        ) => {
             state.modalState.isOpen = true
             state.modalState.dict = action.payload
             state.modalState.isSaved = !!action.payload._id
@@ -71,7 +68,7 @@ export const dictSlice = createSlice({
         closeModal: (state: DictState) => {
             state.modalState.isOpen = false
             state.modalState.dict = null
-        }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -102,7 +99,7 @@ export const dictSlice = createSlice({
                     state.modalState.isSaved = true
                     state.modalState.dict._id = action.payload._id
                 }
-                state.dict = [...state.dict as IDict[], action.payload]
+                state.dict = [...(state.dict as IDict[]), action.payload]
             })
             .addCase(addDict.rejected, (state, action) => {
                 state.isLoading = false
@@ -121,15 +118,16 @@ export const dictSlice = createSlice({
                     state.modalState.isSaved = false
                     state.modalState.dict._id = null
                 }
-                state.dict = state.dict.filter(dict => dict._id !== action.payload.id)
+                state.dict = state.dict.filter(
+                    (dict) => dict._id !== action.payload.id
+                )
             })
             .addCase(deleteDict.rejected, (state, action) => {
                 state.isLoading = false
                 console.log('delete dict rejected', action.payload)
             })
-    }
+    },
 })
-
 
 export const { openModal, closeModal } = dictSlice.actions
 export default dictSlice.reducer

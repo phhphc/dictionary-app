@@ -5,14 +5,12 @@ import Dict from '../models/dict'
 import { JWTRequest } from '../middlewares/auth'
 import * as cambridge from '../services/cambridge'
 
-
 interface IDict {
     word?: string
     mean?: string
     detail?: any
     hideUntil?: Date
 }
-
 
 // @desc    Get all user dict
 // @route   GET /api/dict/
@@ -106,7 +104,6 @@ export const deleteUserDict = expressAsyncHandler(
     }
 )
 
-
 // @desc    Autocomple search word
 // @route   GET /api/dict/autocomplete?q=
 // @access  Authenticate only
@@ -126,7 +123,6 @@ export const autoCompleteWord = expressAsyncHandler(
         res.send(data)
     }
 )
-
 
 // @desc    Lookup word
 // @route   GET /api/dict/lookup?q=

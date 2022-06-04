@@ -8,8 +8,6 @@ const AuthLayout = ({ children }: LayoutProps) => {
             <Header></Header>
 
             {children}
-
-            <h2>Auth footer</h2>
         </>
     )
 }

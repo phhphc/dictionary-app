@@ -4,12 +4,12 @@ interface IDict {
     word: string
     mean?: string
     detail: {
-        word: string;
-        ipa_uk: string;
-        ipa_us: string;
+        word: string
+        ipa_uk: string
+        ipa_us: string
         senses: {
-            def: string;
-            examples: string[];
+            def: string
+            examples: string[]
         }[]
     }[]
     owner: Schema.Types.ObjectId
@@ -23,7 +23,7 @@ const dictSchema = new Schema<IDict>(
             required: true,
         },
         mean: {
-            type: String
+            type: String,
         },
         detail: {
             type: Schema.Types.Array,

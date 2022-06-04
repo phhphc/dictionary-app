@@ -15,13 +15,13 @@ export interface IRegisterData {
 }
 
 export interface IWDetail {
-    word: string;
-    pos: string[];
-    ipa_uk: string;
-    ipa_us: string;
+    word: string
+    pos: string[]
+    ipa_uk: string
+    ipa_us: string
     senses: {
-        def: string;
-        examples: string[];
+        def: string
+        examples: string[]
     }[]
 }
 

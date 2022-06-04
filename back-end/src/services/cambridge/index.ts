@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from 'axios'
 
-import parseSenseHTML from './parser';
+import parseSenseHTML from './parser'
 
 const AUTO_COMPLETE_API = 'https://dictionary.cambridge.org/autocomplete/amp'
 export const autoCompleteEngWord = async (word: string) => {
@@ -8,7 +8,7 @@ export const autoCompleteEngWord = async (word: string) => {
         params: {
             dataset: 'english',
             q: word,
-        }
+        },
     })
     return data
 }

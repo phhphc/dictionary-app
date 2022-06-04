@@ -1,4 +1,6 @@
-@import "normalize.css";
+@import 'normalize.css';
+@import 'colors';
+@import 'variables';
 
 * {
     box-sizing: border-box;
@@ -8,9 +10,12 @@ html,
 body {
     margin: 0;
     border: 0;
-    background-color: whitesmoke;
+    background-color: var(--main-bg-color);
+    transition: background-color 2 * $transition-duration
+        $transition-timing-function;
 }
 
-input {
+input,
+button {
     font: inherit;
 }

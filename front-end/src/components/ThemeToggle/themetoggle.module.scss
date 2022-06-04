@@ -1,0 +1,43 @@
+@import 'scss/variables';
+
+$thumb-width: 32px;
+$icon-width: 24px;
+
+.btn {
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    padding: 0;
+    width: $icon-width + $thumb-width;
+    overflow: hidden;
+}
+
+.slider,
+.sliderDark {
+    background-color: var(--toggle-btn-bg);
+    color: var(--toggle-btn-text);
+    display: flex;
+    width: 2 * $icon-width + $thumb-width;
+    align-items: center;
+    justify-content: center;
+    transition-property: color, background-color, margin-left;
+    transition-duration: $transition-duration;
+    transition-timing-function: $transition-timing-function;
+    margin-left: -$icon-width;
+}
+
+.sliderDark {
+    margin-left: 0;
+}
+
+.thumb {
+    font-size: 1.4em;
+    margin: 2px 0;
+    width: $thumb-width;
+    color: var(--toggle-btn);
+}
+
+.icon {
+    width: $icon-width;
+    padding: 0 4px;
+}

@@ -1,0 +1,43 @@
+$btn-width: 60px;
+
+.Btn {
+    padding: 6px 0;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 8px rgba(#000, 0.1);
+    border-radius: 4px;
+    width: $btn-width;
+    overflow: hidden;
+    color: white;
+
+    .BtnSlider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        width: 2 * $btn-width;
+        transition: all 0.2s ease-in-out;
+
+        .BtnChild,
+        .BtnIcon {
+            width: $btn-width;
+        }
+    }
+
+    &:hover {
+        .BtnSlider {
+            margin-left: -$btn-width;
+        }
+    }
+}
+
+.BtnClose {
+    background-color: #007bff;
+}
+
+.BtnDelete {
+    background-color: #dc3545;
+}
+
+.BtnSave {
+    background-color: #28a745;
+}

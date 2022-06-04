@@ -1,26 +1,33 @@
-@import "scss/color";
+@import 'scss/variables';
 
 .wrapper {
     display: flex;
     justify-content: space-between;
-    background-color: $primary-color;
-    box-shadow: 0 1px 8px rgba(black, 0.6);
+    background-color: var(--component-bg-color);
+    box-shadow: 0 2px 9px rgba(#000, 0.1);
+    transition-property: background-color, color;
+    transition-duration: $transition-duration;
+    transition-timing-function: $transition-timing-function;
 }
 
 .navBlock {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: inherit;
 }
 
 .navItem {
+    color: var(--main-text-color);
+    transition: inherit;
     margin: 10px 20px;
-    color: $primary-color-text;
     text-decoration: none;
 }
 
 .navBrand {
+    color: var(--main-text-color);
+    transition: inherit;
     font-size: 1.6rem;
     padding: 10px 20px;
-    color: $primary-color-text;
+    text-decoration: none;
 }

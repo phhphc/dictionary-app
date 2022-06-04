@@ -1,40 +1,36 @@
-import { useAppSelector, useAppDispatch } from "app/hooks";
-import { closeModal, addDict, deleteDict } from "features/dict/dictSlice";
-import { useState } from "react";
+import { useAppSelector, useAppDispatch } from 'app/hooks'
+import { closeModal, addDict, deleteDict } from 'features/dict/dictSlice'
 
-
-import style from "./wordmodal.module.scss"
-import WordDetail from "./WordDetail";
-
+import style from './wordmodal.module.scss'
+import WordDetail from './WordDetail'
+import { CloseBtn, DeleteBtn, SaveBtn } from 'components/Buttons'
 
 const WordModal = () => {
-    const { dict, isOpen, isSaved } = useAppSelector(state => state.dict.modalState);
+    const { dict, isOpen, isSaved } = useAppSelector(
+        (state) => state.dict.modalState
+    )
 
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch()
 
     const handleClose = () => {
-        dispatch(closeModal());
+        dispatch(closeModal())
     }
     const handleAddDict = () => {
-        if (dict) dispatch(addDict(dict));
+        if (dict) dispatch(addDict(dict))
     }
     const handleDeleteDict = () => {
-        if (dict && dict._id) dispatch(deleteDict(dict._id));
-        console.log("delete dict");
+        if (dict && dict._id) dispatch(deleteDict(dict._id))
+        console.log('delete dict')
     }
 
-    console.log(dict?._id);
+    console.log(dict?._id)
 
     if (isOpen)
         return (
             <div className={style.overlay}>
-
-
                 <div className={style.modal}>
                     <div className={style.modalHeader}>
-                        <div className={style.modalTitle}>
-                            {dict?.word}
-                        </div>
+                        <div className={style.modalTitle}>{dict?.word}</div>
                     </div>
 
                     <div className={style.modalBody}>
@@ -44,22 +40,20 @@ const WordModal = () => {
                     </div>
 
                     <div className={style.modalFooter}>
-                        <button onClick={handleClose}
-                            className={style.modalClose}
-                        >Close</button>
+                        <CloseBtn onClick={handleClose}>Close</CloseBtn>
 
-                        {isSaved ?
-                            <button onClick={handleDeleteDict}>Delete</button> :
-                            <button onClick={handleAddDict}>Save</button>
-                        }
-
+                        {isSaved ? (
+                            <DeleteBtn onClick={handleDeleteDict}>
+                                Delete
+                            </DeleteBtn>
+                        ) : (
+                            <SaveBtn onClick={handleAddDict}>Save</SaveBtn>
+                        )}
                     </div>
                 </div>
             </div>
-        );
-    else
-        return (<></>)
-};
+        )
+    else return <></>
+}
 
-
-export default WordModal;
+export default WordModal

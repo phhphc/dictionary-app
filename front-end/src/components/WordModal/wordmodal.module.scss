@@ -1,3 +1,14 @@
+@keyframes slidein {
+    from {
+        opacity: 0;
+        scale: 2;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 .overlay {
     position: absolute;
     display: flex;
@@ -5,20 +16,23 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(black, 0.3);
+    background-color: rgba(#000, 0.3);
 }
 
 .modal {
-    background-color: white;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
     width: 700px;
     margin: auto;
     border-radius: 10px;
     overflow: hidden;
+    animation: slidein 0.2s ease-in;
 }
 
 .modalHeader {
     font-size: 1.6rem;
-    background-color: white;
+    background-color: var(--component-bg-color);
+    color: var(--text-color);
     padding: 4px 0;
 }
 
@@ -29,14 +43,15 @@
 .modalBody {
     max-height: 85vh;
     overflow: scroll;
-    background-color: whitesmoke;
+    // background-color: whitesmoke;
 }
 
 .modalFooter {
     display: flex;
     flex-direction: row-reverse;
-    background-color: white;
-}
+    background-color: var(--component-bg-color);
 
-.modalClose {
+    button {
+        margin: 8px 8px;
+    }
 }

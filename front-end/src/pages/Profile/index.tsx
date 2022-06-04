@@ -1,14 +1,15 @@
-import { useAppSelector } from "app/hooks"
+import { useAppSelector } from 'app/hooks'
 
 const Profile = () => {
-    const user = useAppSelector(state => state.auth.user)
+    const user = useAppSelector((state) => state.auth.user)
 
-
-    return (<div>
-        User name: {user?.name}
-        <br/>
-        Email: {user?.email}
-    </div>)
+    return (
+        <div>
+            User name: {user?.name}
+            <br />
+            Email: {user?.email}
+        </div>
+    )
 }
 
 export default Profile

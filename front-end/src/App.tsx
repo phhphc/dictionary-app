@@ -10,14 +10,16 @@ import { useAppDispatch, useAppSelector } from 'app/hooks'
 
 const App = () => {
     const dispatch = useAppDispatch()
-    const user = useAppSelector(state => state.auth.user)
+    const user = useAppSelector((state) => state.auth.user)
 
     useEffect(() => {
         dispatch(getUser())
     }, [dispatch])
 
     useEffect(() => {
-        if (user) { dispatch(getDict()) }
+        if (user) {
+            dispatch(getDict())
+        }
     }, [user, dispatch])
 
     return (
