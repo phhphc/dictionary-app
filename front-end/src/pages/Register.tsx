@@ -74,7 +74,7 @@ const Register = () => {
                         </div>
 
                         <div className={style.formGroup}>
-                            <input type="password2" name="password2" className={style.formInput} id='password2'
+                            <input type="password" name="password2" className={style.formInput} id='password2'
                                 value={password2} onChange={handleChange} />
 
                             <div className={style.formIcon}><BsFileLock /></div>
