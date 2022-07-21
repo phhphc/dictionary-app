@@ -36,6 +36,7 @@ export const lookUpDict = async (word: string) => {
             throw err.response.data.message || (err.message as string)
         })
 
+    console.dir(response.data)
     return response.data as IDict
 }
 

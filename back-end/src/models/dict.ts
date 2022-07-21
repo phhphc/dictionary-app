@@ -1,20 +1,28 @@
 import { Schema, model } from 'mongoose'
+import { IDict, IDictPron, IDictDetail } from '../interface/dict'
 
-interface IDict {
-    word: string
-    mean?: string
-    detail: {
-        word: string
-        ipa_uk: string
-        ipa_us: string
-        senses: {
-            def: string
-            examples: string[]
-        }[]
-    }[]
-    owner: Schema.Types.ObjectId
-    hideUntil?: Schema.Types.Date
-}
+type IDictSense = IDictDetail['senses'][0]
+type IDictPronAudio = IDictPron['audio'][0]
+
+const DictPronSchema = new Schema<IDictPron>({
+    pron: {
+        type: String,
+        required: true
+    },
+    audio: {
+        type: [new Schema<IDictPronAudio>({
+            type: {
+                type: String,
+                required: true
+            },
+            src: {
+                type: String,
+                required: true
+            }
+        })],
+        required: true
+    }
+})
 
 const dictSchema = new Schema<IDict>(
     {
@@ -26,8 +34,28 @@ const dictSchema = new Schema<IDict>(
             type: String,
         },
         detail: {
-            type: Schema.Types.Array,
-            required: true,
+            type: [new Schema<IDictDetail>(
+                {
+                    word: String,
+                    pos: [String],
+                    uk: {
+                        type: DictPronSchema,
+                        required: false,
+                    },
+                    us: {
+                        type: DictPronSchema,
+                        required: false,
+                    },
+                    senses: {
+                        type: [new Schema<IDictSense>({
+                            def: String,
+                            examples: [String]
+                        })],
+                        required: true,
+                    }
+                }
+            )],
+            required: true
         },
         owner: {
             type: Schema.Types.ObjectId,

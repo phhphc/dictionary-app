@@ -4,13 +4,7 @@ import expressAsyncHandler from 'express-async-handler'
 import Dict from '../models/dict'
 import { JWTRequest } from '../middlewares/auth'
 import * as cambridge from '../services/cambridge'
-
-interface IDict {
-    word?: string
-    mean?: string
-    detail?: any
-    hideUntil?: Date
-}
+import { IDict } from '../interface/dict'
 
 // @desc    Get all user dict
 // @route   GET /api/dict/
@@ -140,7 +134,7 @@ export const lookUpWord = expressAsyncHandler(
         }
 
         const data = await cambridge.lookUpWord(q)
-        const resData: IDict = {
+        const resData: Omit<IDict, 'owner'> = {
             word: q,
             mean: '',
             detail: data,

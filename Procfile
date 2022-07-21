@@ -1,1 +1,0 @@
-web: ./back-end npm start
