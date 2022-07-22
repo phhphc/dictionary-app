@@ -14,11 +14,19 @@ export interface IRegisterData {
     password: string
 }
 
+export interface IDictPron {
+    pron: string
+    audio: {
+        type: string
+        src: string
+    }[]
+}
+
 export interface IWDetail {
     word: string
     pos: string[]
-    ipa_uk: string
-    ipa_us: string
+    uk?: IDictPron
+    us?: IDictPron
     senses: {
         def: string
         examples: string[]
@@ -28,7 +36,7 @@ export interface IWDetail {
 export interface IDict {
     _id: string
     word: string
-    mean: string
+    mean?: string
     detail: IWDetail[]
     hideUntil?: Date
 }

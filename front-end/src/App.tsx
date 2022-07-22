@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
 
-import './scss/generic.scss'
+import './scss/index.scss'
 import { publicPages, privatePages, defaultPages } from 'pages'
 import Protected from 'components/Protected'
 import { getUser } from 'features/auth/authSlice'

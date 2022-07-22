@@ -1,11 +1,11 @@
-import Header from 'components/Header'
+import GuestHeader from 'components/Header/GuestHeader'
 
 import { LayoutProps } from '.'
 
 const AuthLayout = ({ children }: LayoutProps) => {
     return (
         <>
-            <Header></Header>
+            <GuestHeader />
 
             {children}
         </>

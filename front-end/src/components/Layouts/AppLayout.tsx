@@ -1,11 +1,11 @@
-import Header from 'components/Header'
+import UserHeader from 'components/Header/UserHeader';
 
 import { LayoutProps } from '.'
 
 const AppLayout = ({ children }: LayoutProps) => {
     return (
         <>
-            <Header />
+            <UserHeader />
 
             {children}
         </>

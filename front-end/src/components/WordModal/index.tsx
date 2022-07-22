@@ -1,9 +1,9 @@
 import { useAppSelector, useAppDispatch } from 'app/hooks'
 import { closeModal, addDict, deleteDict } from 'features/dict/dictSlice'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
-import style from './wordmodal.module.scss'
 import WordDetail from './WordDetail'
-import { CloseBtn, DeleteBtn, SaveBtn } from 'components/Buttons'
 
 const WordModal = () => {
     const { dict, isOpen, isSaved } = useAppSelector(
@@ -25,35 +25,46 @@ const WordModal = () => {
 
     console.log(dict?._id)
 
-    if (isOpen)
-        return (
-            <div className={style.overlay}>
-                <div className={style.modal}>
-                    <div className={style.modalHeader}>
-                        <div className={style.modalTitle}>{dict?.word}</div>
-                    </div>
+    if (!dict || !isOpen) {
+        return <></>
+    }
 
-                    <div className={style.modalBody}>
-                        <div>{dict?.mean}</div>
+    return (
+        <Modal lg
+            show={isOpen}
+            onHide={handleClose}
+            centered
+            size="xl"
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    {dict.word}
+                </Modal.Title>
+            </Modal.Header>
 
-                        {dict && <WordDetail detail={dict.detail} />}
-                    </div>
+            <Modal.Body>
+                {<p>{dict.mean}</p>}
 
-                    <div className={style.modalFooter}>
-                        <CloseBtn onClick={handleClose}>Close</CloseBtn>
+                <WordDetail detail={dict.detail} />
+            </Modal.Body>
 
-                        {isSaved ? (
-                            <DeleteBtn onClick={handleDeleteDict}>
-                                Delete
-                            </DeleteBtn>
-                        ) : (
-                            <SaveBtn onClick={handleAddDict}>Save</SaveBtn>
-                        )}
-                    </div>
-                </div>
-            </div>
-        )
-    else return <></>
+            <Modal.Footer>
+                {isSaved ? (
+                    <Button variant="outline-danger"
+                        onClick={handleDeleteDict}
+                    >Delete</Button>
+                ) : (
+                    <Button variant="outline-success"
+                        onClick={handleAddDict}
+                    >Save</Button>
+                )}
+
+                <Button variant="outline-primary" onClick={handleClose}
+                >Close</Button>
+            </Modal.Footer>
+        </Modal>
+
+    )
 }
 
 export default WordModal

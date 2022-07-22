@@ -1,3 +1,5 @@
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import { IWDetail } from 'app/interfaces'
 
 import style from './worddetail.module.scss'
@@ -21,16 +23,15 @@ const WordDetail = ({ detail }: WordDetailProps) => {
                     </div>
 
                     <div className={style.ipaWrapper}>
-                        {d.ipa_uk && (
+                        {d.uk && (
                             <div className={style.ipaLabel}>
-                                UK: /
-                                <span className={style.ipa}>{d.ipa_uk}</span>/
+                                UK: /<span className={style.ipa}>{d.uk.pron}</span>/
                             </div>
                         )}
-                        {d.ipa_us && (
+                        {d.us && (
                             <div className={style.ipaLabel}>
                                 US: /
-                                <span className={style.ipa}>{d.ipa_us}</span>/
+                                <span className={style.ipa}>{d.us.pron}</span>/
                             </div>
                         )}
                     </div>
