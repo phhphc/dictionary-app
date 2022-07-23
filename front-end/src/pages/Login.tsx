@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 import { ILoginData } from 'app/interfaces'
 import style from 'scss/auth.module.scss'
-import img from "media/img/authPoster.jpg"
+import img from 'media/img/authPoster.jpg'
 
 type LoginForm = ILoginData
 
@@ -48,43 +48,76 @@ const Login = () => {
 
             <div className={style.block}>
                 <h1 className={style.title}>Welcome to DictApp</h1>
-                <p className={style.subtitle}>To keep connect with us please login with
-                    your personal infomation by email address and password.</p>
+                <p className={style.subtitle}>
+                    To keep connect with us please login with your personal
+                    infomation by email address and password.
+                </p>
 
                 <form onSubmit={handleSubmit} className={style.formControl}>
-
                     <div className={style.inputWrapper}>
                         <div className={style.formGroup}>
-                            <input type="email" name="email" className={style.formInput} id="name"
-                                value={email} onChange={handleChange} />
+                            <input
+                                type="email"
+                                name="email"
+                                className={style.formInput}
+                                id="name"
+                                value={email}
+                                onChange={handleChange}
+                            />
 
-                            <div className={style.formIcon}><BsEnvelope /></div>
-                            <label className={style.formLabel} htmlFor='name'>Email Address</label>
+                            <div className={style.formIcon}>
+                                <BsEnvelope />
+                            </div>
+                            <label className={style.formLabel} htmlFor="name">
+                                Email Address
+                            </label>
                         </div>
 
                         <div className={style.formGroup}>
-                            <input type="password" name="password" className={style.formInput} id="password"
-                                value={password} onChange={handleChange} />
+                            <input
+                                type="password"
+                                name="password"
+                                className={style.formInput}
+                                id="password"
+                                value={password}
+                                onChange={handleChange}
+                            />
 
-                            <div className={style.formIcon}><BsShieldLock /></div>
-                            <label className={style.formLabel} htmlFor="password">Password</label>
+                            <div className={style.formIcon}>
+                                <BsShieldLock />
+                            </div>
+                            <label
+                                className={style.formLabel}
+                                htmlFor="password"
+                            >
+                                Password
+                            </label>
                         </div>
                     </div>
 
-                    {formError && <div className={style.formError}>{formError}</div>}
+                    {formError && (
+                        <div className={style.formError}>{formError}</div>
+                    )}
 
                     <div className={style.formHelper}>
-                        <a href='#'>Forgot password ?</a>
+                        <a href="#">Forgot password ?</a>
                     </div>
 
                     <div className={style.formAction}>
-                        <Link to='/register'>
-                            <input className={style.btn} type="button" value="Create Account" />
+                        <Link to="/register">
+                            <input
+                                className={style.btn}
+                                type="button"
+                                value="Create Account"
+                            />
                         </Link>
 
-                        <input className={style.btn + ' ' + style.btnActive} type="submit" value="Login" />
+                        <input
+                            className={style.btn + ' ' + style.btnActive}
+                            type="submit"
+                            value="Login"
+                        />
                     </div>
-
                 </form>
             </div>
         </div>

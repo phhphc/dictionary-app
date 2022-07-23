@@ -1,6 +1,5 @@
 import { Schema } from 'mongoose'
 
-
 export interface IDictPron {
     pron: string
     audio: {
@@ -25,5 +24,5 @@ export interface IDict {
     mean?: string
     detail: IDictDetail[]
     owner: Schema.Types.ObjectId
-    hideUntil?: Schema.Types.Date
+    hideUntil?: Date
 }

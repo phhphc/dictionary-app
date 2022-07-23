@@ -7,21 +7,23 @@ type IDictPronAudio = IDictPron['audio'][0]
 const DictPronSchema = new Schema<IDictPron>({
     pron: {
         type: String,
-        required: true
+        required: true,
     },
     audio: {
-        type: [new Schema<IDictPronAudio>({
-            type: {
-                type: String,
-                required: true
-            },
-            src: {
-                type: String,
-                required: true
-            }
-        })],
-        required: true
-    }
+        type: [
+            new Schema<IDictPronAudio>({
+                type: {
+                    type: String,
+                    required: true,
+                },
+                src: {
+                    type: String,
+                    required: true,
+                },
+            }),
+        ],
+        required: true,
+    },
 })
 
 const dictSchema = new Schema<IDict>(
@@ -34,8 +36,8 @@ const dictSchema = new Schema<IDict>(
             type: String,
         },
         detail: {
-            type: [new Schema<IDictDetail>(
-                {
+            type: [
+                new Schema<IDictDetail>({
                     word: String,
                     pos: [String],
                     uk: {
@@ -47,15 +49,17 @@ const dictSchema = new Schema<IDict>(
                         required: false,
                     },
                     senses: {
-                        type: [new Schema<IDictSense>({
-                            def: String,
-                            examples: [String]
-                        })],
+                        type: [
+                            new Schema<IDictSense>({
+                                def: String,
+                                examples: [String],
+                            }),
+                        ],
                         required: true,
-                    }
-                }
-            )],
-            required: true
+                    },
+                }),
+            ],
+            required: true,
         },
         owner: {
             type: Schema.Types.ObjectId,

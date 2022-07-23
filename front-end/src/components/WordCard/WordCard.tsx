@@ -1,7 +1,7 @@
 import { useAppDispatch } from 'app/hooks'
 import { openModal } from 'features/dict/dictSlice'
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 import { IDict } from 'app/interfaces'
 
@@ -17,8 +17,9 @@ const WordCard = ({ _id, mean, word, detail }: IDict) => {
             <Card.Body>
                 <Card.Title>{word}</Card.Title>
                 <Card.Text>{mean}</Card.Text>
-                <Button variant="outline-primary"
-                    onClick={handleShowModal}>More</Button>
+                <Button variant="outline-primary" onClick={handleShowModal}>
+                    More
+                </Button>
             </Card.Body>
         </Card>
     )

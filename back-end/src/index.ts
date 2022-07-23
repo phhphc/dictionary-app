@@ -27,6 +27,8 @@ app.use(cookieParser())
 app.use(router)
 
 app.use(express.static(__dirname + '/../../front-end/build/'))
-app.get('/*', (req: Request, res: Response) => { res.sendFile(__dirname + '/../../front-end/build/index.html') })
+app.get('/*', (req: Request, res: Response) => {
+    res.sendFile(__dirname + '/../../front-end/build/index.html')
+})
 
 app.use(errorHandler)

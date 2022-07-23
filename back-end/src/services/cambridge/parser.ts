@@ -2,13 +2,15 @@ import { load, Element, Cheerio, CheerioAPI } from 'cheerio'
 
 import { IDictDetail, IDictPron } from '../../interface/dict'
 
-
 const clearRedundantSpaces = (text = '') => {
     return text.replace(/[\s\n|\t]+/g, ' ')
 }
 
 const prononSourcePrefix = 'https://dictionary.cambridge.org'
-const parsePronon = ($: CheerioAPI, $lang: Cheerio<Element>): undefined | IDictPron => {
+const parsePronon = (
+    $: CheerioAPI,
+    $lang: Cheerio<Element>
+): undefined | IDictPron => {
     if ($lang.length === 0) return undefined
     return {
         pron: $lang.find('.ipa').text(),
@@ -18,10 +20,10 @@ const parsePronon = ($: CheerioAPI, $lang: Cheerio<Element>): undefined | IDictP
                 const $src = $(src)
                 return {
                     type: $src.attr('type') as any,
-                    src: prononSourcePrefix + $src.attr('src')
+                    src: prononSourcePrefix + $src.attr('src'),
                 }
             })
-            .get()
+            .get(),
     }
 }
 

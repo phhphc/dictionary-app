@@ -24,6 +24,15 @@ export const deleteDict = createAsyncThunk(
     }
 )
 
+// update dict
+export const updateDict = createAsyncThunk(
+    'dict/updateDict',
+    async (dict: IDict, thunkAPI) => {
+        console.log(dict)
+        return await dictService.updateDict(dict).catch(thunkAPI.rejectWithValue)
+    }
+)
+
 type DictState = {
     dict: IDict[]
     isLoading: boolean
@@ -32,13 +41,13 @@ type DictState = {
         isSaved: boolean
     } & (
         | {
-              isOpen: false
-              dict: null
-          }
+            isOpen: false
+            dict: null
+        }
         | {
-              isOpen: true
-              dict: IDictUnsaved | IDict
-          }
+            isOpen: true
+            dict: IDictUnsaved | IDict
+        }
     )
 }
 
@@ -125,6 +134,25 @@ export const dictSlice = createSlice({
             .addCase(deleteDict.rejected, (state, action) => {
                 state.isLoading = false
                 console.log('delete dict rejected', action.payload)
+            })
+            // update dict
+            .addCase(updateDict.pending, (state) => {
+                state.isLoading = true
+                console.log('update dict pending')
+            })
+            .addCase(updateDict.fulfilled, (state, action) => {
+                state.isLoading = false
+                console.log('update dict fulfilled')
+                console.log(action)
+
+                state.dict = state.dict.map(
+                    (dict) => dict._id === action.payload._id
+                        ? action.payload : dict
+                )
+            })
+            .addCase(updateDict.rejected, (state, action) => {
+                state.isLoading = false
+                console.log('update dict rejected', action.payload)
             })
     },
 })

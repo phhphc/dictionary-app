@@ -1,4 +1,4 @@
-import UserHeader from 'components/Header/UserHeader';
+import UserHeader from 'components/Header/UserHeader'
 
 import { LayoutProps } from '.'
 

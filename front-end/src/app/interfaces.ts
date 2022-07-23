@@ -38,7 +38,7 @@ export interface IDict {
     word: string
     mean?: string
     detail: IWDetail[]
-    hideUntil?: Date
+    hideUntil?: string
 }
 
 export interface IDictUnsaved extends Omit<IDict, '_id'> {

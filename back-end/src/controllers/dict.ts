@@ -58,6 +58,7 @@ export const addUserDict = expressAsyncHandler(
 export const updateUserDict = expressAsyncHandler(
     async (req: JWTRequest, res: Response) => {
         const { word, mean, detail, hideUntil }: IDict = req.body
+        console.log(req.body)
 
         const dict = await Dict.findOneAndUpdate(
             { _id: req.params.id, owner: req.auth?.id },

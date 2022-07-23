@@ -1,5 +1,4 @@
-@import "scss/variables";
-
+@import 'scss/variables';
 
 $input-padding-left: 5rem;
 $input-padding-bottom: 12px;
@@ -107,7 +106,7 @@ $input-padding-top: 1.8rem;
 }
 
 .formInput:focus ~ .formLabel,
-.formInput:not([value=""]) ~ .formLabel {
+.formInput:not([value='']) ~ .formLabel {
     top: $input-padding-bottom;
     transform: none;
     font-size: 1rem;

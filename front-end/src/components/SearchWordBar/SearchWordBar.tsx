@@ -18,7 +18,9 @@ const SearchWordBar = () => {
 
     const [searchTerm, setSearchTerm] = useState('')
     const [showList, setShowList] = useState(false)
-    const [autoCompleteList, setAutoCompleteList] = useState<IAutoComplete[]>([])
+    const [autoCompleteList, setAutoCompleteList] = useState<IAutoComplete[]>(
+        []
+    )
 
     const dict = useAppSelector((state) => state.dict.dict)
 
@@ -57,11 +59,12 @@ const SearchWordBar = () => {
     }
 
     return (
-        <div className={style.searchBar}
+        <div
+            className={style.searchBar}
             onFocus={handleFocus}
-            onBlur={handleBlur}>
-            <Form className="d-flex"
-                onSubmit={handleSubmit}>
+            onBlur={handleBlur}
+        >
+            <Form className="d-flex" onSubmit={handleSubmit}>
                 <Form.Control
                     type="search"
                     placeholder="Search"
@@ -73,20 +76,21 @@ const SearchWordBar = () => {
                 <Button variant="outline-success">Search</Button>
             </Form>
 
-            {showList &&
+            {showList && (
                 <div className={style.searchList}>
                     <ListGroup>
                         {autoCompleteList.map(({ word }) => (
                             <ListGroup.Item
                                 action
                                 key={word}
-                                onClick={handleCompleteClick}>
+                                onClick={handleCompleteClick}
+                            >
                                 {word}
                             </ListGroup.Item>
                         ))}
                     </ListGroup>
                 </div>
-            }
+            )}
         </div>
     )
 }

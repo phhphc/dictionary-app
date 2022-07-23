@@ -30,8 +30,7 @@ const WordDetail = ({ detail }: WordDetailProps) => {
                         )}
                         {d.us && (
                             <div className={style.ipaLabel}>
-                                US: /
-                                <span className={style.ipa}>{d.us.pron}</span>/
+                                US: /<span className={style.ipa}>{d.us.pron}</span>/
                             </div>
                         )}
                     </div>

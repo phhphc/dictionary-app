@@ -8,7 +8,7 @@ import { getUser } from 'features/auth/authSlice'
 import { register } from 'features/auth/authService'
 import { IRegisterData } from 'app/interfaces'
 import style from 'scss/auth.module.scss'
-import img from "media/img/authPoster.jpg"
+import img from 'media/img/authPoster.jpg'
 
 type RegisterForm = IRegisterData & {
     password2: string
@@ -52,61 +52,115 @@ const Register = () => {
 
             <div className={style.block}>
                 <h1 className={style.title}>Welcome to DictApp</h1>
-                <p className={style.subtitle}>To keep connect with us please login with
-                    your personal infomation by email address and password.</p>
+                <p className={style.subtitle}>
+                    To keep connect with us please login with your personal
+                    infomation by email address and password.
+                </p>
 
                 <form onSubmit={handleSubmit} className={style.formControl}>
                     <div className={style.inputWrapper}>
                         <div className={style.formGroup}>
-                            <input type="email" name="email" className={style.formInput} id='email'
-                                value={email} onChange={handleChange} />
+                            <input
+                                type="email"
+                                name="email"
+                                className={style.formInput}
+                                id="email"
+                                value={email}
+                                onChange={handleChange}
+                            />
 
-                            <div className={style.formIcon}><BsEnvelope /></div>
-                            <label className={style.formLabel} htmlFor='email'>Email Address</label>
+                            <div className={style.formIcon}>
+                                <BsEnvelope />
+                            </div>
+                            <label className={style.formLabel} htmlFor="email">
+                                Email Address
+                            </label>
                         </div>
 
                         <div className={style.formGroup}>
-                            <input type="password" name="password" className={style.formInput} id='password'
-                                value={password} onChange={handleChange} />
+                            <input
+                                type="password"
+                                name="password"
+                                className={style.formInput}
+                                id="password"
+                                value={password}
+                                onChange={handleChange}
+                            />
 
-                            <div className={style.formIcon}><BsShieldLock /></div>
-                            <label className={style.formLabel} htmlFor='password'>Password</label>
+                            <div className={style.formIcon}>
+                                <BsShieldLock />
+                            </div>
+                            <label
+                                className={style.formLabel}
+                                htmlFor="password"
+                            >
+                                Password
+                            </label>
                         </div>
 
                         <div className={style.formGroup}>
-                            <input type="password" name="password2" className={style.formInput} id='password2'
-                                value={password2} onChange={handleChange} />
+                            <input
+                                type="password"
+                                name="password2"
+                                className={style.formInput}
+                                id="password2"
+                                value={password2}
+                                onChange={handleChange}
+                            />
 
-                            <div className={style.formIcon}><BsFileLock /></div>
-                            <label className={style.formLabel} htmlFor='password2'>Confirm Password</label>
+                            <div className={style.formIcon}>
+                                <BsFileLock />
+                            </div>
+                            <label
+                                className={style.formLabel}
+                                htmlFor="password2"
+                            >
+                                Confirm Password
+                            </label>
                         </div>
 
                         <div className={style.formGroup}>
-                            <input type="text" name="name" className={style.formInput} id='name'
-                                value={name} onChange={handleChange} />
+                            <input
+                                type="text"
+                                name="name"
+                                className={style.formInput}
+                                id="name"
+                                value={name}
+                                onChange={handleChange}
+                            />
 
-                            <div className={style.formIcon}><FaRegUser /></div>
-                            <label className={style.formLabel} htmlFor='name'>User Name</label>
+                            <div className={style.formIcon}>
+                                <FaRegUser />
+                            </div>
+                            <label className={style.formLabel} htmlFor="name">
+                                User Name
+                            </label>
                         </div>
-
                     </div>
 
-                    {formError && <div className={style.formError}>{formError}</div>}
+                    {formError && (
+                        <div className={style.formError}>{formError}</div>
+                    )}
 
-                    <div className={style.formHelper}>
-                    </div>
+                    <div className={style.formHelper}></div>
 
                     <div className={style.formAction}>
-                        <Link to='/login'>
-                            <input className={style.btn} type="button" value="Login" />
+                        <Link to="/login">
+                            <input
+                                className={style.btn}
+                                type="button"
+                                value="Login"
+                            />
                         </Link>
 
-                        <input className={style.btn + ' ' + style.btnActive} type="submit" value="Create Account" />
+                        <input
+                            className={style.btn + ' ' + style.btnActive}
+                            type="submit"
+                            value="Create Account"
+                        />
                     </div>
                 </form>
             </div>
-
-
         </div>
     )
 }
