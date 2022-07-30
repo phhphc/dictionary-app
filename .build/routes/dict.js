@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const dict_1 = require("../controllers/dict");
+const auth_1 = require("../middlewares/auth");
+const dictRouter = (0, express_1.Router)();
+dictRouter.use(auth_1.protect);
+dictRouter.get('/', dict_1.getUserDict);
+dictRouter.post('/', dict_1.addUserDict);
+dictRouter.put('/:id', dict_1.updateUserDict);
+dictRouter.delete('/:id', dict_1.deleteUserDict);
+dictRouter.get('/autocomplete', dict_1.autoCompleteWord);
+dictRouter.get('/lookup', dict_1.lookUpWord);
+exports.default = dictRouter;
