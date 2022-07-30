@@ -13,7 +13,7 @@ const GuestHeader = () => {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-between">
                     <Nav>
-                        <Nav.Link as={Link} to="/login">
+                        <Nav.Link as={Link} to="/">
                             Dashboard
                         </Nav.Link>
                     </Nav>

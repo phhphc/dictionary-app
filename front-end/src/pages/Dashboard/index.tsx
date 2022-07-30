@@ -15,7 +15,7 @@ const Dashboard = () => {
 
     const now = Date.now()
     const filterFunc = ({ hideUntil }: IDict) => {
-        return !hideUntil || (new Date(hideUntil)).getTime() < now
+        return !hideUntil || new Date(hideUntil).getTime() < now
     }
 
     return (
@@ -29,14 +29,11 @@ const Dashboard = () => {
             </Row>
 
             <Row>
-                {dict?.filter(filterFunc)
-                    .map((wDict) => (
-                        <Col key={wDict._id}
-                            sm={6} md={4} lg={3} className="mt-4"
-                        >
-                            <WordCard {...wDict} />
-                        </Col>
-                    ))}
+                {dict?.filter(filterFunc).map((wDict) => (
+                    <Col key={wDict._id} sm={6} md={4} lg={3} className="mt-4">
+                        <WordCard {...wDict} />
+                    </Col>
+                ))}
             </Row>
         </Container>
     )

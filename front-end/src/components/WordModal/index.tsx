@@ -1,5 +1,10 @@
 import { useAppSelector, useAppDispatch } from 'app/hooks'
-import { closeModal, addDict, deleteDict, updateDict } from 'features/dict/dictSlice'
+import {
+    closeModal,
+    addDict,
+    deleteDict,
+    updateDict,
+} from 'features/dict/dictSlice'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
@@ -27,7 +32,7 @@ const WordModal = () => {
     const newHandleHideWord = (date: number) => () => {
         const hideUntil = new Date()
         hideUntil.setDate(hideUntil.getDate() + date)
-        dispatch(updateDict({ ...dict as any, hideUntil }))
+        dispatch(updateDict({ ...(dict as any), hideUntil }))
     }
 
     console.log(dict?._id)
@@ -51,18 +56,29 @@ const WordModal = () => {
             <Modal.Footer>
                 {isSaved ? (
                     <>
-                        <Button variant="outline-danger" onClick={handleDeleteDict}>
+                        <Button
+                            variant="outline-danger"
+                            onClick={handleDeleteDict}
+                        >
                             Delete
                         </Button>
                         <Dropdown>
-                            <Dropdown.Toggle variant='outline-success'>
+                            <Dropdown.Toggle variant="outline-success">
                                 Hide
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={newHandleHideWord(1)}>1 day</Dropdown.Item>
-                                <Dropdown.Item onClick={newHandleHideWord(3)}>3 day</Dropdown.Item>
-                                <Dropdown.Item onClick={newHandleHideWord(7)}>7 day</Dropdown.Item>
-                                <Dropdown.Item onClick={newHandleHideWord(30)}>30 day</Dropdown.Item>
+                                <Dropdown.Item onClick={newHandleHideWord(1)}>
+                                    1 day
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={newHandleHideWord(3)}>
+                                    3 day
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={newHandleHideWord(7)}>
+                                    7 day
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={newHandleHideWord(30)}>
+                                    30 day
+                                </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </>

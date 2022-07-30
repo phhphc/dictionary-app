@@ -3,6 +3,8 @@ import Col from 'react-bootstrap/Col'
 import { IWDetail } from 'app/interfaces'
 
 import style from './worddetail.module.scss'
+import React, { useRef } from 'react'
+import AudioButton from 'components/AudioButton/AudioButton'
 
 type WordDetailProps = {
     detail: IWDetail[]
@@ -24,14 +26,36 @@ const WordDetail = ({ detail }: WordDetailProps) => {
 
                     <div className={style.ipaWrapper}>
                         {d.uk && (
-                            <div className={style.ipaLabel}>
-                                UK: /<span className={style.ipa}>{d.uk.pron}</span>/
-                            </div>
+                            <>
+                                {d.uk.pron && (
+                                    <div className={style.ipaLabel}>
+                                        UK: /
+                                        <span className={style.ipa}>
+                                            {d.uk.pron}
+                                        </span>
+                                        /
+                                    </div>
+                                )}
+                                {d.uk.audio.length > 0 && (
+                                    <AudioButton audio={d.uk.audio} />
+                                )}
+                            </>
                         )}
                         {d.us && (
-                            <div className={style.ipaLabel}>
-                                US: /<span className={style.ipa}>{d.us.pron}</span>/
-                            </div>
+                            <>
+                                {d.us.pron && (
+                                    <div className={style.ipaLabel}>
+                                        US: /
+                                        <span className={style.ipa}>
+                                            {d.us.pron}
+                                        </span>
+                                        /
+                                    </div>
+                                )}
+                                {d.us.audio.length > 0 && (
+                                    <AudioButton audio={d.us.audio} />
+                                )}
+                            </>
                         )}
                     </div>
 

@@ -57,9 +57,11 @@ export const deleteDict = async (id: string) => {
 }
 
 export const updateDict = async (dict: IDict) => {
-    const response = await axios.put(`/api/dict/${dict._id}`, dict).catch((err) => {
-        throw err.response.data.message || (err.message as string)
-    })
+    const response = await axios
+        .put(`/api/dict/${dict._id}`, dict)
+        .catch((err) => {
+            throw err.response.data.message || (err.message as string)
+        })
 
     return response.data as IDict
 }
