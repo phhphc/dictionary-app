@@ -7,7 +7,7 @@ type IDictPronAudio = IDictPron['audio'][0]
 const DictPronSchema = new Schema<IDictPron>({
     pron: {
         type: String,
-        required: true,
+        required: false,
     },
     audio: {
         type: [
