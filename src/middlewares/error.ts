@@ -18,4 +18,8 @@ export const errorHandler = (
         message: res.statusCode !== 500 ? err.message : 'Internal Server Error',
         stack: debug ? err.stack : null,
     })
+
+    if (res.statusCode === 500) {
+        console.error(err.stack)
+    }
 }

@@ -6,7 +6,6 @@ const clearRedundantSpaces = (text = '') => {
     return text.replace(/[\s\n|\t]+/g, ' ')
 }
 
-const prononSourcePrefix = 'https://dictionary.cambridge.org'
 const parsePronon = (
     $: CheerioAPI,
     $lang: Cheerio<Element>
@@ -20,7 +19,7 @@ const parsePronon = (
                 const $src = $(src)
                 return {
                     type: $src.attr('type') as any,
-                    src: prononSourcePrefix + $src.attr('src'),
+                    src: $src.attr('src') as any,
                 }
             })
             .get(),

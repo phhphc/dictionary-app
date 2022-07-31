@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import 'colors'
 
 import { errorHandler } from './middlewares/error'
+import path from 'path'
 import { connectDB } from './configs/database'
 import router from './routes'
 
@@ -26,9 +27,10 @@ app.use(cookieParser())
 
 app.use(router)
 
-app.use(express.static(__dirname + '/../public/'))
-app.get('/*', (req: Request, res: Response) => {
-    res.sendFile(__dirname + '/../public/index.html')
+app.use(express.static(path.join(__dirname, '..', 'public')))
+app.get('*', (req: Request, res: Response) => {
+    const indexfile = path.join(__dirname, '..', 'public', 'index.html')
+    res.sendFile(indexfile)
 })
 
 app.use(errorHandler)
