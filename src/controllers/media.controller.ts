@@ -6,4 +6,5 @@ import { createProxyMiddleware } from 'http-proxy-middleware'
 export const loadMedia = createProxyMiddleware({
     target: 'https://dictionary.cambridge.org',
     changeOrigin: true,
+    timeout: 5000
 })
